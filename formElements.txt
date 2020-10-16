@@ -1,0 +1,20 @@
+//This is a package of all form elements, may not have a main method
+class formElements{
+
+	interface basicElement{
+		final String label; //label of every form element
+	}
+	
+	abstract class TextView implements basicElement{
+		String text;
+		//Other parameters and methods
+	}
+
+	abstract class RadioButton implements basicElement{
+		bool buttons[];
+		//Other parameters and methods	
+	}
+
+	etc
+}
+
