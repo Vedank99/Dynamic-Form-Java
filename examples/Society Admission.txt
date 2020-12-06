@@ -1,0 +1,21 @@
+{
+name : Vedank,
+sex : Male,
+interest : [ Design , Content ,  ],
+year : Third,
+thoughts : NA,
+}
+{
+name : ABC,
+sex : Other,
+interest : [ Design , Content , PR ,  ],
+year : First,
+thoughts : NA,
+}
+{
+name : ABC,
+sex : Other,
+interest : [ Design , Content , PR ,  ],
+year : First,
+thoughts : NA,
+}
