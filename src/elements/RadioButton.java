@@ -61,27 +61,19 @@ public class RadioButton extends BasicElement implements Serializable{
     }
 
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
         
-        /*FlowLayout fLayout = new FlowLayout();
-        fLayout.setHgap(25);
-        
-        jPanel = new JPanel();
-        jPanel.setLayout(fLayout);*/
+        i = super.createElementSwing(i, jPanel, gbc);
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.gridy = i;
-        gbc.gridx = 0;
-        JLabel jLabel = new JLabel(this.label);
-        frame.add(jLabel,gbc);
-        
         buttonGroup = new ButtonGroup();
         
         for(int j = 0;j<this.numOfOptions;j++){
             
             gbc.gridx = j+1;
             buttonGroup.add(options[j]);
-            frame.add(options[j],gbc);
+            jPanel.add(options[j],gbc);
             
         }
         

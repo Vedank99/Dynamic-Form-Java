@@ -1,0 +1,21 @@
+{
+	email : [ abc@xyz.com, vvv, na],
+	address : [ 
+	'4-4-678/abc road' ,
+	'4-4-678/abc road' ,
+	'4-4-678/abc road'
+],
+}
+{
+	email : [ abc@xyz.com],
+	address : [ 
+	'4-4-678/abc road'
+],
+}
+{
+	email : [ abc@xyz.com, a],
+	address : [ 
+	'4-4-678/abc road' ,
+	'4-4-678/abc road'
+],
+}

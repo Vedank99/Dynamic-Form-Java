@@ -1,5 +1,6 @@
 package elements;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.io.Serializable;
 import javax.swing.*;
@@ -32,7 +33,18 @@ public abstract class BasicElement implements Serializable {
         
     }
 
-    public abstract int createElementSwing(int i, JFrame frame,GridBagConstraints gbc);
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
+        
+        JLabel jLabel = new JLabel(this.label);
+        jLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        gbc.gridheight =1;
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = i;
+        jPanel.add(jLabel,gbc);
+        return i;
+        
+    };
     public abstract String handleInput();
     
     public String getKey(){

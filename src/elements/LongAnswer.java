@@ -6,11 +6,16 @@
 package elements;
 
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,8 +25,15 @@ public class LongAnswer extends BasicElement{
     
     public String text;
     public int maxChars;
-    public JTextArea textArea;
+    public ArrayList<JTextArea>textAreas;
     int height;
+    public boolean addMore;
+    int y;
+    int x;
+    
+    public boolean getAddMore(){
+        return addMore;
+    }
     
     
     public int getHeight(){
@@ -32,8 +44,8 @@ public class LongAnswer extends BasicElement{
         return maxChars;
     }
     
-    public JTextArea gettextArea(){
-        return textArea;
+    public ArrayList<JTextArea> gettextAreas(){
+        return textAreas;
     }
     
     public LongAnswer(String key,String label,boolean required){
@@ -62,10 +74,13 @@ public class LongAnswer extends BasicElement{
         text = s;
     }
     public boolean validate(){
-        int length = textArea.getText().length();
-        if(required && length == 0)
-            return false;
-        return length <= maxChars;
+        
+        for(int i = 0;i<textAreas.size();i++){
+            int length = textAreas.get(i).getText().length();
+            if(required && length == 0)
+                return false;
+        }
+        return true;
     }
 
     @Override
@@ -77,6 +92,8 @@ public class LongAnswer extends BasicElement{
         this.text = scanner.nextLine();
         System.out.print("Enter maximum character limit ( 0 for default ) : ");
         this.maxChars = scanner.nextInt();
+        System.out.print("More than one required ? ( true or false )");
+        this.addMore = scanner.nextBoolean();
 
         if(maxChars == 0)
             maxChars = 50;
@@ -89,32 +106,72 @@ public class LongAnswer extends BasicElement{
     }
 
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
         
+        
+        i = super.createElementSwing(i,jPanel,gbc);
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        JLabel jLabel = new JLabel(this.label);
-        textArea = new JTextArea(this.text,height,25);
         
-        gbc.gridx = 0;
-        gbc.gridy = i+1;
+        textAreas = new ArrayList();
         
-        frame.add(jLabel,gbc);
+        JTextArea textArea = new JTextArea(this.text,height,25);
+        textAreas.add(textArea);
         
         gbc.gridx = 1;
         gbc.gridy = i;
         gbc.gridheight = height;
-        gbc.gridwidth = 5;
+        //gbc.gridwidth = ;
         gbc.fill = GridBagConstraints.VERTICAL;
-        frame.add(textArea,gbc);
+        jPanel.add(textArea,gbc);
+        
+        y = i;
+        x = 1;
+        
+        if(addMore){
+            
+            JButton addButton = new JButton("Add field");
+            gbc.gridx = x + 1;
+            
+            jPanel.add(addButton,gbc);
+            
+            addButton.addActionListener(new ActionListener() {
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                    textAreas.add(new JTextArea(text,height,25));
+                    x = x+1;
+                    gbc.gridx = x+1;
+                    gbc.gridy = y;
+                    gbc.gridheight = height;
+                    //gbc.gridwidth = 3;
+                    jPanel.add(textAreas.get(textAreas.size()-1),gbc);   
+                    jPanel.revalidate();
+                    jPanel.repaint();
+                    
+                }
+            });
+            
+        }
         return gbc.gridy + gbc.gridheight;
     }
 
     @Override
     public String handleInput(){
 
-        if(validate())
-            return key + " : "+ textArea.getText();
+        if(validate()){
+            
+            String ans = key + " : [ \n\t'";
+            ans += textAreas.get(0).getText();
+            if(addMore){
+                
+                for(int i = 1;i<textAreas.size();i++)
+                    ans += "' ,\n\t'"+textAreas.get(i).getText();
+            }
+            ans += "'\n]";
+            return ans;
+        }
         return "";
 
     }

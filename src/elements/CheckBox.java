@@ -69,18 +69,19 @@ public class CheckBox extends BasicElement{
     }
 
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
 
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        gbc.gridx = 0;
+        
+        i = super.createElementSwing(i, jPanel, gbc);
+        
         gbc.gridy = i;
-        JLabel jLabel = new JLabel(this.label);        
-        frame.add(jLabel,gbc);
+        
         
         for(int j = 0;j<this.numOfOptions;j++){
             gbc.gridx = j+1;
-            frame.add(options[j],gbc);
+            jPanel.add(options[j],gbc);
         }
         return gbc.gridy + gbc.gridheight;
     }

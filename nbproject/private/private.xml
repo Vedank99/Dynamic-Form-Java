@@ -5,13 +5,12 @@
         <group>
             <file>file:/D:/OOPsIW/src/form/Form.java</file>
             <file>file:/D:/OOPsIW/src/elements/BasicElement.java</file>
-            <file>file:/D:/OOPsIW/src/elements/FormButton.java</file>
-            <file>file:/D:/OOPsIW/src/form/SwingForm.java</file>
+            <file>file:/D:/OOPsIW/src/form/OpenForm.java</file>
             <file>file:/D:/OOPsIW/src/elements/DropDown.java</file>
-            <file>file:/D:/OOPsIW/src/form/Test.java</file>
             <file>file:/D:/OOPsIW/src/elements/LongAnswer.java</file>
-            <file>file:/D:/OOPsIW/src/elements/ShortAnswer.java</file>
             <file>file:/D:/OOPsIW/src/elements/CheckBox.java</file>
+            <file>file:/D:/OOPsIW/src/elements/ShortAnswer.java</file>
+            <file>file:/D:/OOPsIW/src/form/CreateForm.java</file>
             <file>file:/D:/OOPsIW/src/elements/RadioButton.java</file>
         </group>
     </open-files>

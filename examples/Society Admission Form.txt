@@ -1,0 +1,7 @@
+{
+	name : Vedank,
+	sex : Male,
+	interest : [  ],
+	year : first,
+	cause : 'Your reason',
+}

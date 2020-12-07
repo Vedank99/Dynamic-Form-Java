@@ -1,17 +1,26 @@
 package elements;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Scanner;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ShortAnswer extends BasicElement implements Serializable{
     
     public String text;
     public int maxChars;
-    public JTextField textField;
+    ArrayList<JTextField>textFields;
     public JPanel jPanel;
+    public boolean addMore;
+    int y;
+    int x;
+    
+    public boolean getAddMore(){
+        return addMore;
+    }
     
     public JPanel getJPanel(){
         return jPanel;
@@ -21,8 +30,8 @@ public class ShortAnswer extends BasicElement implements Serializable{
         return maxChars;
     }
     
-    public JTextField getTextField(){
-        return textField;
+    public ArrayList<JTextField> getTextFields(){
+        return textFields;
     }
     
     public ShortAnswer(String key,String label,boolean required){
@@ -51,10 +60,13 @@ public class ShortAnswer extends BasicElement implements Serializable{
         text = s;
     }
     public boolean validate(){
-        int length = textField.getText().length();
-        if(required && length == 0)
-            return false;
-        return length <= maxChars;
+            
+        for(int i = 0;i<textFields.size();i++){
+            int length = textFields.get(i).getText().length();
+            if(required && length == 0)
+                return false;
+        }
+        return true;
     }
 
     @Override
@@ -66,6 +78,9 @@ public class ShortAnswer extends BasicElement implements Serializable{
         this.text = scanner.nextLine();
         System.out.print("Enter maximum character limit ( 0 for default ) : ");
         this.maxChars = scanner.nextInt();
+        
+        System.out.print("More than one required ? ( true or false )");
+        this.addMore = scanner.nextBoolean();
 
         if(maxChars == 0)
             maxChars = 10;
@@ -73,28 +88,49 @@ public class ShortAnswer extends BasicElement implements Serializable{
     }
 
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
         
-        /*jPanel = new JPanel();
+        i = super.createElementSwing(i,jPanel,gbc);
+        textFields = new ArrayList();
+        JTextField textField = new JTextField(this.text,15);
         
-        FlowLayout fLayout = new FlowLayout();
-        fLayout.setHgap(25);
-        jPanel.setLayout(fLayout);*/
+        textFields.add(textField);
         
-        JLabel jLabel = new JLabel(this.label);
-
-        textField = new JTextField(this.text,15);
-        
-        //jLabel.setVisible(true);
-        
-        //jPanel.add(jLabel);
-        gbc.gridheight =1;
+        gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = i;
-        frame.add(jLabel,gbc);
         gbc.gridx = 1;
-        frame.add(textField,gbc);
+        gbc.gridy = i;
+        jPanel.add(textField,gbc);
+        
+        y = i;
+        x = 2;
+        
+        if(addMore){
+            
+            JButton addButton = new JButton("Add field");
+            gbc.gridx = x;
+            
+            jPanel.add(addButton,gbc);
+            
+            addButton.addActionListener(new ActionListener() {
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                    textFields.add(new JTextField("", 15));
+                    gbc.gridy = y;
+                    x = x+1;
+                    gbc.gridx = x;
+                    gbc.gridheight = 1;
+                    gbc.gridwidth = 1;
+                    jPanel.add(textFields.get(textFields.size()-1),gbc);   
+                    jPanel.revalidate();
+                    jPanel.repaint();
+                    
+                }
+            });
+            
+        }
         
         return gbc.gridy + gbc.gridheight;
         
@@ -103,8 +139,17 @@ public class ShortAnswer extends BasicElement implements Serializable{
     @Override
     public String handleInput(){
 
-        if(validate())
-            return key + " : "+ textField.getText();
+        if(validate()){
+            String ans = key + " : [ ";
+            ans += textFields.get(0).getText();
+            if(addMore){
+                
+                for(int i = 1;i<textFields.size();i++)
+                    ans += ", "+textFields.get(i).getText();
+            }
+            ans += "]";
+            return ans;
+        }
         return "";
 
     }

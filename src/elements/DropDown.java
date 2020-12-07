@@ -73,23 +73,17 @@ public class DropDown extends BasicElement{
     }
 
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
 
-        //jPanel = new JPanel();
-        //FlowLayout fLayout = new FlowLayout();
-        //fLayout.setHgap(25);
-        //jPanel.setLayout(fLayout);
+        i = super.createElementSwing(i, jPanel, gbc);
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        JLabel jLabel = new JLabel(this.label);
-        gbc.gridx = 0;
-        gbc.gridy = i;
-        frame.add(jLabel,gbc);
         
         jComboBox = new JComboBox(options);
         
         gbc.gridx = 1;
-        frame.add(jComboBox,gbc);
+        gbc.gridy = i;
+        jPanel.add(jComboBox,gbc);
         
         return gbc.gridy + gbc.gridheight;
         

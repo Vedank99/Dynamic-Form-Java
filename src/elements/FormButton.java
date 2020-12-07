@@ -20,12 +20,12 @@ public class FormButton extends BasicElement implements Serializable{
         this.text = s;
     }
     @Override
-    public int createElementSwing(int i, JFrame frame, GridBagConstraints gbc){
+    public int createElementSwing(int i, JPanel jPanel, GridBagConstraints gbc){
 
         button = new JButton(this.text);
         button.setBounds(100,50*(i+1),100,25);
 
-        frame.add(button);
+        jPanel.add(button);
         return 0;
     }
 

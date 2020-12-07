@@ -9,6 +9,9 @@ public class Form implements Serializable{
     String title; //Title cannot be changed
     final ArrayList<BasicElement> children; //Form elements
     String description;
+    int r;
+    int g;
+    int b;
 
     Form(String title,String description){
         this.title = title;
