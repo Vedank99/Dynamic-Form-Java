@@ -6,6 +6,21 @@ import java.io.Serializable;
 import javax.swing.*;
 import java.util.Scanner;
 
+/*
+This class is the parent class of all the components of the form.
+
+    The three main things included in every component are :
+
+        1) key : This will be used as the key for the key-value pair of output.
+        2) required : This is a boolean type which tells if the field is mandatory or not.
+        3) label : This is the label which will be displayed in the form.
+    
+    The createElement() function is used to assign values to the aboue three variables.
+
+    The createElementSwing() function takes the JPanel and adds the componet label to it.
+
+*/
+
 public abstract class BasicElement implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -37,7 +52,7 @@ public abstract class BasicElement implements Serializable {
         
         JLabel jLabel = new JLabel(this.label);
         jLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        gbc.gridheight =1;
+        gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = i;
