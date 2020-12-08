@@ -38,9 +38,9 @@ public class OpenForm {
             GridBagConstraints gbc = new GridBagConstraints();
             
             JPanel jPanel = new JPanel();
-            
+            Color c = new Color(myForm.r,myForm.g,myForm.b);
             jPanel.setLayout(layout);
-            
+            jPanel.setBackground(c);
             gbc.insets = new Insets(7,7,7,7);
 
         int size = 0;    
@@ -113,6 +113,7 @@ public class OpenForm {
             //frame.setLayout(null);
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().setBackground(Color.YELLOW);
             
         } 
   
