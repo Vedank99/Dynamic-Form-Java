@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package elements;
 
 import java.awt.GridBagConstraints;
@@ -11,16 +6,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-/**
- *
- * @author admin
- */
+
 public class LongAnswer extends BasicElement{
     
     public String text;
@@ -118,12 +108,16 @@ public class LongAnswer extends BasicElement{
         JTextArea textArea = new JTextArea(this.text,height,25);
         textAreas.add(textArea);
         
+        JScrollPane jScrollPane = new JScrollPane(textArea);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
         gbc.gridx = 1;
         gbc.gridy = i;
         gbc.gridheight = height;
         //gbc.gridwidth = ;
         gbc.fill = GridBagConstraints.VERTICAL;
-        jPanel.add(textArea,gbc);
+        jPanel.add(jScrollPane,gbc);
         
         y = i;
         x = 1;
@@ -135,22 +129,19 @@ public class LongAnswer extends BasicElement{
             
             jPanel.add(addButton,gbc);
             
-            addButton.addActionListener(new ActionListener() {
-                
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                    textAreas.add(new JTextArea(text,height,25));
-                    x = x+1;
-                    gbc.gridx = x+1;
-                    gbc.gridy = y;
-                    gbc.gridheight = height;
-                    //gbc.gridwidth = 3;
-                    jPanel.add(textAreas.get(textAreas.size()-1),gbc);   
-                    jPanel.revalidate();
-                    jPanel.repaint();
-                    
-                }
+            addButton.addActionListener((ActionEvent e) -> {
+                textAreas.add(new JTextArea(text,height,25));
+                x = x+1;
+                gbc.gridx = x+1;
+                gbc.gridy = y;
+                gbc.gridheight = height;
+                //gbc.gridwidth = 3;
+                JScrollPane jScrollPane1 = new JScrollPane(textAreas.get(textAreas.size()-1));
+                jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                jPanel.add(jScrollPane1, gbc);
+                jPanel.revalidate();
+                jPanel.repaint();
             });
             
         }
