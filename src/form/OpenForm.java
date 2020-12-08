@@ -57,8 +57,8 @@ public class OpenForm {
         JLabel res = new JLabel("                                                                                                               ");
         res.setFont(new Font("Arial", Font.BOLD, 15));
         gbc.gridx = 1;
-        gbc.gridy = size+6;
-        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.gridy = size+2;
+        gbc.gridwidth = 5;
         jPanel.add(res,gbc);
         
         
