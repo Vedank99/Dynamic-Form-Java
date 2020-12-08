@@ -1,0 +1,13 @@
+{
+	name : [ Vedank Goyal],
+	branch : MC,
+	rollNo : [ 122],
+	Q1 : Encapsulation,
+	Q2 : [ private , protected ,  ],
+	Q3 : [ 
+	'Exception handling is a process to avoid any
+runtime faults in the code.
+two example classes attached below.'
+],
+	attachments : [ URL1, URL2],
+}
