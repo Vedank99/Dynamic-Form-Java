@@ -15,6 +15,15 @@ public class CreateForm {
         System.out.print("Enter form title : ");
         title = scanner.nextLine();
         Form myForm = new Form(title);
+        System.out.println("Add color to the form? (true or false)");
+        boolean colorStatus = scanner.nextBoolean();
+        if(colorStatus)
+        {
+            System.out.println("Enter RGB channel values (0-255)");
+            myForm.r = scanner.nextInt();
+            myForm.g = scanner.nextInt();
+            myForm.b = scanner.nextInt();
+        }
 
         System.out.println("Choose form element");
         System.out.println("1) Short Answer");
