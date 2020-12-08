@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+/*
+    This class created the form.
+    It asks the form title ,description and elements and stores them into a Form object.
+    The Form object is Serialized and stored.
+*/
 public class CreateForm {
     public static void main(String[] args){
         
@@ -14,15 +19,23 @@ public class CreateForm {
         String title;
         System.out.print("Enter form title : ");
         title = scanner.nextLine();
-        Form myForm = new Form(title);
+        
+        String description;
+        System.out.print("Enter form description : ");
+        description = scanner.nextLine();
+        
+        Form myForm = new Form(title,description);
         System.out.println("Add color to the form? (true or false)");
         boolean colorStatus = scanner.nextBoolean();
-        if(colorStatus)
-        {
+        if(colorStatus){
             System.out.println("Enter RGB channel values (0-255)");
             myForm.r = scanner.nextInt();
             myForm.g = scanner.nextInt();
             myForm.b = scanner.nextInt();
+        }else{
+            myForm.r = 238;
+            myForm.g = 238;
+            myForm.b = 238;
         }
 
         System.out.println("Choose form element");
