@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class Form implements Serializable{
     
-    String title; //Title cannot be changed
+    String title; //Title of form
     final ArrayList<BasicElement> children; //Form elements
-    String description;
+    String description; //Description of form
+    // RGB values for form backgroung ( later given by user ).
     int r;
     int g;
     int b;
