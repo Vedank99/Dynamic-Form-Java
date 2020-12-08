@@ -1,2 +1,2 @@
 # Dynamic-Form-Java
-A dynamic form created in Java using its Object Oriented Programming and implemented using swing.
+A dynamic form builder in Java using Object Oriented Programming, implemented using swing.
