@@ -1,22 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package elements;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.util.Scanner;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author admin
- */
 public class CheckBox extends BasicElement{
     
     public int numOfOptions;
@@ -89,14 +77,20 @@ public class CheckBox extends BasicElement{
     @Override
     public String handleInput(){
 
+       boolean atLeastOne = false;
+        
        String ans = key+" : [ ";
        
        for(int i = 0; i<numOfOptions;i++){
            
-           if(options[i].isSelected())
+           if(options[i].isSelected()){
+               atLeastOne = true;
                ans += options[i].getText() + " , ";
+           }
            
        }
+       if(required&&(!atLeastOne))
+               return "";
        
        return ans + " ]";
     }
