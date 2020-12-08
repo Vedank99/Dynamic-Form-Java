@@ -8,6 +8,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/*
+    This class opens the form.
+    It asks the form title as input.
+    The serialized form object is deserialized and stored in a new Form object.
+    Then using GridBagLayout, the form is created with Java Swing.
+*/
+
 public class OpenForm {
     
     public static void main(String [] args){
@@ -42,11 +49,35 @@ public class OpenForm {
             jPanel.setLayout(layout);
             jPanel.setBackground(c);
             gbc.insets = new Insets(7,7,7,7);
-
-        int size = 0;    
+            
+        
+            JLabel titleLabel = new JLabel(myForm.title);
+            titleLabel.setFont(new Font("Serif", Font.BOLD, 15));
+            
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 5;
+            gbc.gridheight = 1;
+            gbc.fill = GridBagConstraints.WEST;
+            
+            jPanel.add(titleLabel,gbc);
+            
+            JLabel desLabel = new JLabel(myForm.description);
+            desLabel.setFont(new Font("Serif", Font.PLAIN, 10));
+            
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.gridwidth = 5;
+            gbc.gridheight = 5;
+            gbc.fill = GridBagConstraints.WEST;
+            jPanel.add(desLabel,gbc);
+            
+            
+            
+        int size = 7;    
         for(int i = 0;i<myForm.children.size();i++)
             size = myForm.children.get(i).createElementSwing(size,jPanel,gbc);
-        
+            
         JButton submit = new JButton("Submit");
 
         
@@ -54,7 +85,7 @@ public class OpenForm {
         gbc.gridy = size+1;
         jPanel.add(submit,gbc);
         
-        JLabel res = new JLabel("                                                                                                               ");
+        JLabel res = new JLabel("");
         res.setFont(new Font("Arial", Font.BOLD, 15));
         gbc.gridx = 1;
         gbc.gridy = size+2;
