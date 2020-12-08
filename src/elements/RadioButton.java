@@ -1,6 +1,5 @@
 package elements;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.*;
 import java.util.Scanner;
