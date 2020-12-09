@@ -28,7 +28,7 @@ public class CreateForm {
         System.out.println("Add color to the form? (true or false)");
         boolean colorStatus = scanner.nextBoolean();
         if(colorStatus){
-            System.out.println("Enter RGB channel values (0-255)");
+            System.out.println("Enter RGB channel values for form background (0-255)");
             myForm.r = scanner.nextInt();
             myForm.g = scanner.nextInt();
             myForm.b = scanner.nextInt();
@@ -72,7 +72,7 @@ public class CreateForm {
                     break;
                 default:
                     formEnd = true;
-                    element = new FormButton("Submit");
+                    element = null;
             }
             
             if(!formEnd) {
