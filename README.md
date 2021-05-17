@@ -1,7 +1,7 @@
 # Dynamic-Form-Java
 A dynamic form builder in Java using Object Oriented Programming, implemented using swing.
 
-[Project Information Pics](https://drive.google.com/drive/folders/1hfDEyUDFwpLfPt8mwmNIIhxwm6-8FtJ3?usp=sharing)
+[<b>Project Information Pics</b>](https://drive.google.com/drive/folders/1hfDEyUDFwpLfPt8mwmNIIhxwm6-8FtJ3?usp=sharing)
 
 <h4>Sample form created using the application</h4>
 
